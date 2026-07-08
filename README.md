@@ -20,4 +20,4 @@ https://yjz8521.github.io/dson/
 2. 在 GitHub Pages 設定中選擇 `master` 分支作為發布來源。
 3. 到 Google Search Console 新增網址前綴：`https://yjz8521.github.io/dson/`。
 4. 提交 sitemap：`https://yjz8521.github.io/dson/sitemap.xml`。
-5. 補上正式信箱與完整地址後，再更新首頁聯絡區。
+5. 補上正式信箱後，再更新首頁聯絡區。
