@@ -2,7 +2,7 @@
 
 GitHub Pages 公開網址：
 
-https://hhiizz.github.io/da_ra/
+https://yjz8521.github.io/dson/
 
 ## 公開站點已補齊
 
@@ -18,6 +18,6 @@ https://hhiizz.github.io/da_ra/
 
 1. 確認 GitHub 倉庫為 Public。
 2. 在 GitHub Pages 設定中選擇 `master` 分支作為發布來源。
-3. 到 Google Search Console 新增網址前綴：`https://hhiizz.github.io/da_ra/`。
-4. 提交 sitemap：`https://hhiizz.github.io/da_ra/sitemap.xml`。
+3. 到 Google Search Console 新增網址前綴：`https://yjz8521.github.io/dson/`。
+4. 提交 sitemap：`https://yjz8521.github.io/dson/sitemap.xml`。
 5. 補上正式信箱與完整地址後，再更新首頁聯絡區。
