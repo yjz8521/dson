@@ -1,0 +1,16 @@
+{
+  "name": "東莞市得聲試驗儀器設備有限公司",
+  "short_name": "DSON",
+  "description": "環境試驗設備與可靠性測試方案",
+  "start_url": "/da_ra/",
+  "display": "standalone",
+  "background_color": "#f4f6f8",
+  "theme_color": "#005f73",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
