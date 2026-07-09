@@ -239,7 +239,7 @@
             <h3>高低溫試驗箱</h3>
             <p>適用於電子元件、材料與整機產品的耐高低溫性能測試。</p>
           </article>
-          <article class="product-card">
+          <article class="product-card product-card-clickable" role="button" tabindex="0" data-spec-trigger="dath" aria-controls="spec-showcase">
             <div class="product-visual visual-machine-2">
               <img src="assets/products/machine-02.jpg" alt="恆溫恆濕試驗箱設備圖" />
               <span>機台展示位</span>
@@ -247,8 +247,9 @@
             <div class="product-badge">02</div>
             <h3>恆溫恆濕試驗箱</h3>
             <p>用於溫濕度循環環境模擬，滿足可靠性與穩定性驗證需求。</p>
+            <span class="product-action">查看 DATH 規格</span>
           </article>
-          <article class="product-card">
+          <article class="product-card product-card-clickable" role="button" tabindex="0" data-spec-trigger="dlct" aria-controls="spec-showcase">
             <div class="product-visual visual-machine-3">
               <img src="assets/products/machine-03.jpg" alt="冷熱衝擊試驗箱設備圖" />
               <span>機台展示位</span>
@@ -256,8 +257,9 @@
             <div class="product-badge">03</div>
             <h3>冷熱衝擊試驗箱</h3>
             <p>支持快速溫度切換測試，用於評估材料與結構的耐衝擊能力。</p>
+            <span class="product-action">查看 DLCT 規格</span>
           </article>
-          <article class="product-card">
+          <article class="product-card product-card-clickable" role="button" tabindex="0" data-spec-trigger="dath" aria-controls="spec-showcase">
             <div class="product-visual visual-machine-4">
               <img src="assets/products/machine-04.jpg" alt="步入式環境試驗室設備圖" />
               <span>機台展示位</span>
@@ -265,6 +267,7 @@
             <div class="product-badge">04</div>
             <h3>步入式環境試驗室</h3>
             <p>適合大型工件、整機與批量樣品的環境模擬與可靠性測試。</p>
+            <span class="product-action">查看 DATH 規格</span>
           </article>
           <article class="product-card">
             <div class="product-visual visual-machine-5">
@@ -286,17 +289,16 @@
           </article>
         </div>
 
-        <div class="spec-showcase" aria-label="產品規格資料">
+        <div class="spec-showcase" id="spec-showcase" aria-label="產品規格資料" hidden>
           <div class="spec-intro">
             <p class="section-label">SPECIFICATION</p>
-            <h3>產品型號與規格資料</h3>
+            <h3>對應產品規格</h3>
             <p>
-              以下依據公司產品型錄資料整理，涵蓋步入式恒温恒湿室 DATH 系列與
-              冷热冲击试验机 DLCT 系列。實際配置可依測試標準、樣品尺寸、場地條件與供電條件定制。
+              已依產品型錄整理 DATH 與 DLCT 系列。點選上方產品後，這裡會顯示對應規格資料。
             </p>
           </div>
 
-          <article class="spec-panel">
+          <article class="spec-panel" id="spec-dath" data-spec-panel="dath" hidden>
             <div class="spec-panel-heading">
               <span>01</span>
               <div>
@@ -438,7 +440,7 @@
             </div>
           </article>
 
-          <article class="spec-panel">
+          <article class="spec-panel" id="spec-dlct" data-spec-panel="dlct" hidden>
             <div class="spec-panel-heading">
               <span>02</span>
               <div>

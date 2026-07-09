@@ -591,6 +591,17 @@ button {
   box-shadow: 0 26px 56px rgba(9, 27, 45, 0.14);
 }
 
+.product-card-clickable {
+  cursor: pointer;
+}
+
+.product-card-clickable:focus-visible,
+.product-card-clickable.is-selected {
+  outline: 3px solid rgba(233, 180, 76, 0.6);
+  outline-offset: 4px;
+  border-color: rgba(0, 95, 115, 0.28);
+}
+
 .product-card > * {
   position: relative;
   z-index: 1;
@@ -724,10 +735,28 @@ button {
   font-weight: 700;
 }
 
+.product-action {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 16px;
+  padding: 9px 13px;
+  border-radius: 999px;
+  background: rgba(0, 95, 115, 0.09);
+  color: var(--primary);
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
 .spec-showcase {
   margin-top: 42px;
   display: grid;
   gap: 24px;
+  scroll-margin-top: 112px;
+}
+
+.spec-showcase[hidden],
+.spec-panel[hidden] {
+  display: none;
 }
 
 .spec-intro {
