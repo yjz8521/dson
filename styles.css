@@ -577,6 +577,7 @@ button {
 }
 
 .product-card {
+  display: block;
   position: relative;
   padding: 28px;
   min-height: 220px;
@@ -745,6 +746,16 @@ button {
   color: var(--primary);
   font-size: 0.9rem;
   font-weight: 800;
+}
+
+.spec-page {
+  min-height: 68vh;
+}
+
+.spec-page h1 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  line-height: 1.08;
 }
 
 .spec-showcase {
