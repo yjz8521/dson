@@ -101,6 +101,9 @@ button {
 .contact-copy p,
 .news-card p,
 .product-card p,
+.product-family-card p,
+.application-card p,
+.proof-card p,
 .strength-card p,
 .certificate-card p {
   line-height: 1.8;
@@ -470,6 +473,9 @@ button {
 .about-tabs,
 .visual-grid,
 .product-grid,
+.product-family-grid,
+.application-grid,
+.proof-grid,
 .strength-grid,
 .certificate-grid,
 .news-grid {
@@ -485,6 +491,9 @@ button {
 .about-tab,
 .metric-card,
 .product-card,
+.product-family-card,
+.application-card,
+.proof-card,
 .strength-card,
 .certificate-card,
 .news-card,
@@ -497,6 +506,9 @@ button {
 
 .about-tab,
 .metric-card,
+.product-family-card,
+.application-card,
+.proof-card,
 .strength-card,
 .certificate-card,
 .news-card,
@@ -506,6 +518,9 @@ button {
 
 .about-tab h3,
 .product-card h3,
+.product-family-card h3,
+.application-card h3,
+.proof-card h3,
 .strength-card h3,
 .certificate-card h3,
 .news-card h3,
@@ -746,6 +761,60 @@ button {
   color: var(--primary);
   font-size: 0.9rem;
   font-weight: 800;
+}
+
+.product-family-showcase {
+  margin-top: 44px;
+  padding: 32px;
+  border-radius: 28px;
+  border: 1px solid rgba(0, 95, 115, 0.12);
+  background:
+    radial-gradient(circle at 10% 12%, rgba(233, 180, 76, 0.14), transparent 28%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(244, 248, 250, 0.9));
+  box-shadow: 0 18px 48px rgba(9, 27, 45, 0.08);
+}
+
+.product-family-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 24px;
+}
+
+.product-family-card,
+.application-card,
+.proof-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.product-family-card::before,
+.application-card::before,
+.proof-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 4px;
+  background: var(--accent);
+}
+
+.product-family-card h3,
+.application-card h3,
+.proof-card h3 {
+  margin-top: 0;
+}
+
+.application-grid,
+.proof-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.application-card,
+.proof-card {
+  min-height: 210px;
+  background: linear-gradient(180deg, #ffffff, #f8fbfc);
+}
+
+.proof-card {
+  background: rgba(255, 255, 255, 0.9);
 }
 
 .spec-page {
@@ -1037,6 +1106,9 @@ button {
   }
 
   .product-grid,
+  .product-family-grid,
+  .application-grid,
+  .proof-grid,
   .strength-grid,
   .certificate-grid,
   .news-grid,
@@ -1145,6 +1217,9 @@ button {
   }
 
   .product-grid,
+  .product-family-grid,
+  .application-grid,
+  .proof-grid,
   .strength-grid,
   .certificate-grid,
   .news-grid,
@@ -1218,6 +1293,9 @@ button {
   }
 
   .product-card,
+  .product-family-card,
+  .application-card,
+  .proof-card,
   .strength-card,
   .certificate-card,
   .news-card,
