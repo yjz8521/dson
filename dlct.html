@@ -11,7 +11,7 @@
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <link rel="canonical" href="https://yjz8521.github.io/dson/dlct.html" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="styles.css?v=full-range-20260710" />
+  <link rel="stylesheet" href="styles.css?v=full-spec-20260710" />
 </head>
 <body>
   <header class="site-header" id="top">
@@ -38,6 +38,8 @@
 
       <nav class="site-nav" id="site-nav">
         <a href="index.html#products">產品中心</a>
+        <a href="rapid-temperature.html">快速溫變</a>
+        <a href="dth.html">DTH 規格</a>
         <a href="dath.html">DATH 規格</a>
         <a href="index.html#contact">聯絡我們</a>
       </nav>
@@ -78,9 +80,11 @@
                 </tr>
               </thead>
               <tbody>
-                <tr><td>DLCT-B2 / B3</td><td>40 × 40 × 30 cm</td><td>136 × 192 × 205 cm</td><td>220V 3相 61A / 380V 3相 35A</td><td>23.1KW</td><td>8噸</td><td>1 1/2 英寸</td></tr>
+                <tr><td>DLCT-B2</td><td>40 × 40 × 30 cm</td><td>136 × 192 × 205 cm</td><td>220V 3相 61A / 380V 3相 35A</td><td>23.1KW</td><td>8噸</td><td>1 1/2 英寸</td></tr>
+                <tr><td>DLCT-B3</td><td>40 × 40 × 30 cm</td><td>136 × 192 × 205 cm</td><td>220V 3相 61A / 380V 3相 35A</td><td>23.1KW</td><td>8噸</td><td>1 1/2 英寸</td></tr>
                 <tr><td>DLCT-B4</td><td>40 × 40 × 30 cm</td><td>136 × 192 × 205 cm</td><td>220V 3相 70A / 380V 3相 40A</td><td>26.4KW</td><td>10噸</td><td>1 1/2 英寸</td></tr>
-                <tr><td>DLCT-C2 / C3</td><td>50 × 50 × 30 cm</td><td>146 × 230 × 220 cm</td><td>220V 3相 96A / 380V 3相 55A</td><td>36.3KW</td><td>15噸</td><td>2 英寸</td></tr>
+                <tr><td>DLCT-C2</td><td>50 × 50 × 30 cm</td><td>146 × 230 × 220 cm</td><td>220V 3相 96A / 380V 3相 55A</td><td>36.3KW</td><td>15噸</td><td>2 英寸</td></tr>
+                <tr><td>DLCT-C3</td><td>50 × 50 × 30 cm</td><td>146 × 230 × 220 cm</td><td>220V 3相 96A / 380V 3相 55A</td><td>36.3KW</td><td>15噸</td><td>2 英寸</td></tr>
                 <tr><td>DLCT-C4</td><td>50 × 50 × 30 cm</td><td>146 × 230 × 220 cm</td><td>220V 3相 105A / 380V 3相 60A</td><td>39.6KW</td><td>15噸</td><td>2 英寸</td></tr>
                 <tr><td>DLCT-D2</td><td>60 × 60 × 30 cm</td><td>162 × 232 × 220 cm</td><td>220V 3相 96A / 380V 3相 55A</td><td>36.3KW</td><td>15噸</td><td>2 英寸</td></tr>
                 <tr><td>DLCT-D3</td><td>60 × 60 × 30 cm</td><td>162 × 232 × 220 cm</td><td>220V 3相 105A / 380V 3相 60A</td><td>39.6KW</td><td>15噸</td><td>2 英寸</td></tr>
@@ -117,7 +121,8 @@
                 <li>7寸 800 × 600 彩色 LCD 觸控控制器，中英文操作介面</li>
                 <li>PT100 × 3 感溫器，P.I.D + P.L.C + A/D + S.S.R 控制</li>
                 <li>支援程序設定、故障報警、循環測試與資料記錄</li>
-                <li>可依需求配置通訊、記錄與斷電記憶功能</li>
+                <li>RS485 / RS232 遠程通訊與 SD 長時間資料記錄</li>
+                <li>可配置高精密 12BIT D/A 轉換、溫度記錄與斷電記憶</li>
               </ul>
             </div>
             <div>
@@ -129,6 +134,127 @@
                 <li>JESD22 A104-A</li>
               </ul>
             </div>
+          </div>
+        </article>
+
+        <article class="spec-panel">
+          <div class="spec-panel-heading">
+            <span>03</span>
+            <div>
+              <h4>各型號溫度、負載與回復時間</h4>
+              <p>型號尾碼 2 / 3 / 4 分別對應 -40℃ / -55℃ / -65℃ 低溫衝擊等級。</p>
+            </div>
+          </div>
+
+          <div class="spec-table-wrap">
+            <table class="spec-table spec-table-dense">
+              <thead>
+                <tr>
+                  <th>型號</th>
+                  <th>預冷溫度</th>
+                  <th>低溫衝擊</th>
+                  <th>模擬負載 IC</th>
+                  <th>高溫衝擊回復</th>
+                  <th>低溫衝擊回復</th>
+                  <th>預熱時間</th>
+                  <th>預冷時間</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>DLCT-B2</td><td>-10℃ ~ -60℃</td><td>-10℃ ~ -40℃</td><td>2.5kg</td><td>-40℃ → +150℃ / 5min</td><td>+150℃ → -40℃ / 5min</td><td>50min</td><td>60min</td></tr>
+                <tr><td>DLCT-C2</td><td>-10℃ ~ -60℃</td><td>-10℃ ~ -40℃</td><td>5.0kg</td><td>-40℃ → +150℃ / 5min</td><td>+150℃ → -40℃ / 5min</td><td>45min</td><td>60min</td></tr>
+                <tr><td>DLCT-D2</td><td>-10℃ ~ -60℃</td><td>-10℃ ~ -40℃</td><td>7.5kg</td><td>-40℃ → +150℃ / 5min</td><td>+150℃ → -40℃ / 5min</td><td>45min</td><td>80min</td></tr>
+                <tr><td>DLCT-B3</td><td>-10℃ ~ -80℃</td><td>-10℃ ~ -55℃</td><td>2.5kg</td><td>-55℃ → +150℃ / 5min</td><td>+150℃ → -55℃ / 5min</td><td>50min</td><td>75min</td></tr>
+                <tr><td>DLCT-C3</td><td>-10℃ ~ -80℃</td><td>-10℃ ~ -55℃</td><td>5.0kg</td><td>-55℃ → +150℃ / 5min</td><td>+150℃ → -55℃ / 5min</td><td>45min</td><td>75min</td></tr>
+                <tr><td>DLCT-D3</td><td>-10℃ ~ -80℃</td><td>-10℃ ~ -55℃</td><td>7.0kg</td><td>-55℃ → +150℃ / 5min</td><td>+150℃ → -55℃ / 5min</td><td>45min</td><td>80min</td></tr>
+                <tr><td>DLCT-B4</td><td>-10℃ ~ -80℃</td><td>-10℃ ~ -65℃</td><td>2.5kg</td><td>-65℃ → +150℃ / 5min</td><td>+150℃ → -65℃ / 5min</td><td>50min</td><td>75min</td></tr>
+                <tr><td>DLCT-C4</td><td>-10℃ ~ -80℃</td><td>-10℃ ~ -65℃</td><td>5.0kg</td><td>-65℃ → +150℃ / 5min</td><td>+150℃ → -65℃ / 5min</td><td>45min</td><td>75min</td></tr>
+                <tr><td>DLCT-D4</td><td>-10℃ ~ -80℃</td><td>-10℃ ~ -65℃</td><td>7.5kg</td><td>-65℃ → +150℃ / 5min</td><td>+150℃ → -65℃ / 5min</td><td>45min</td><td>80min</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="spec-panel">
+          <div class="spec-panel-heading">
+            <span>04</span>
+            <div>
+              <h4>控制系统与安全保护</h4>
+              <p>适用于九个 DLCT 标准型号的共通控制、冷冻与保护配置。</p>
+            </div>
+          </div>
+
+          <div class="spec-table-wrap">
+            <table class="spec-table">
+              <tbody>
+                <tr><th>结构</th><td>双室设计（热室或冷室），强力气体驱动阻尼器</td></tr>
+                <tr><th>内外箱材料</th><td>内箱 SUS#304 不锈钢；外箱 SUS#304 不锈钢，3B 表面处理</td></tr>
+                <tr><th>测试篮</th><td>不锈钢网架或不锈钢板</td></tr>
+                <tr><th>冷冻系统</th><td>二元式 Cascade Refrigeration System，水冷方式</td></tr>
+                <tr><th>环境温度</th><td>5℃ ~ 30℃</td></tr>
+                <tr><th>预热 / 高温冲击</th><td>预热 +60℃ ~ +200℃；高温冲击 +60℃ ~ +150℃</td></tr>
+                <tr><th>温度均匀度</th><td>±2℃</td></tr>
+                <tr><th>感温器</th><td>PT100Ω × 3</td></tr>
+                <tr><th>控制器</th><td>7寸触控面板</td></tr>
+                <tr><th>设定范围</th><td>温度 -100.00℃ ~ +200.00℃；时间 0H1M ~ 9999H59M；循环 0 ~ 10000 次</td></tr>
+                <tr><th>解析度</th><td>温度 0.01℃；时间 1min</td></tr>
+                <tr><th>控制方式</th><td>P.I.D + P.L.C + A.D + S.S.R</td></tr>
+                <tr><th>扩充功能</th><td>光耦 DC/AC 接口、高精密 12BIT D/A 转换、温度记录器、关机记忆</td></tr>
+                <tr><th>安全系统</th><td>漏电与无熔丝断路、预热/预冷区温度、冷媒压力、压缩空气、冷却水、压缩机/风扇/马达过载、防雷突波、保险丝、错相、超温/低温及控制器内外部诊断保护，并提供故障原因提示</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="spec-detail-grid spec-detail-grid-compact">
+            <div>
+              <h5>型号编码</h5>
+              <ul>
+                <li>示例：DLCT-B-4-15</li>
+                <li>B：40 × 40 × 30cm</li>
+                <li>C：50 × 50 × 30cm</li>
+                <li>D：60 × 60 × 30cm</li>
+                <li>E：客户指定尺寸</li>
+                <li>低温代码 #2=-40℃、#3=-55℃、#4=-65℃</li>
+                <li>触控面板配置</li>
+              </ul>
+            </div>
+            <div>
+              <h5>产品特点</h5>
+              <ul>
+                <li>两箱式测试区上下移动结构</li>
+                <li>温度波动度：≤ ±0.5℃</li>
+                <li>温度均匀度：≤ ±2℃</li>
+                <li>预热温度范围：≤ +60℃ ~ +200℃</li>
+                <li>预冷温度范围：≤ -75℃ ~ -10℃</li>
+                <li>温度恢复时间：≤ 5min</li>
+                <li>支持程序、通讯、记录与维护信息管理</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="spec-panel">
+          <div class="spec-panel-heading">
+            <span>05</span>
+            <div>
+              <h4>适用试验标准摘要</h4>
+              <p>以下为资料中列出的主要标准及关键循环条件；实际程序按客户标准版本与样品要求设定。</p>
+            </div>
+          </div>
+
+          <div class="spec-table-wrap">
+            <table class="spec-table spec-table-dense">
+              <thead>
+                <tr><th>标准</th><th>主要温度 / 时间条件</th><th>循环与备注</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>MIL-STD-883E Method 1010.7</td><td>高温最高 +150℃；低温最低 -65℃；驻留时间 10 ~ 15min</td><td>至少 10 次；初始点可为低温或高温；转换时间小于 1min</td></tr>
+                <tr><td>JIS C0025 / IEC 68-2-14 / GB 2423.22</td><td>高温 +70℃ / +85℃ / +100℃ / +125℃；低温最低 -65℃；驻留 30min ~ 3hr</td><td>一般 5 次；自动转换不超过 30sec，小试件不超过 10sec</td></tr>
+                <tr><td>IPC 2.6.7</td><td>高温最高 +150℃；低温最低 -65℃；驻留 15min</td><td>100 次；恢复时间 2min 以内；试验结束点在高温</td></tr>
+                <tr><td>Bellcore GR-1221-CORE</td><td>+70℃ / +85℃ 与 -40℃组合；驻留时间不低于 15min</td><td>500 次或 1000 次</td></tr>
+                <tr><td>JESD22 A104-A</td><td>高温最高 +150℃；低温最低 -65℃；驻留时间 10 ~ 15min</td><td>抽样 10 次可接受；1000 次合格；转换与驻留合计不超过 15min</td></tr>
+              </tbody>
+            </table>
           </div>
         </article>
 
@@ -145,6 +271,8 @@
       </div>
       <div class="footer-links">
         <a href="index.html#products">產品中心</a>
+        <a href="rapid-temperature.html">快速溫變</a>
+        <a href="dth.html">DTH 規格</a>
         <a href="dath.html">DATH 規格</a>
         <a href="index.html#contact">聯絡我們</a>
       </div>
