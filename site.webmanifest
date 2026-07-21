@@ -8,9 +8,9 @@
   "theme_color": "#005f73",
   "icons": [
     {
-      "src": "favicon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml"
+      "src": "assets/brand/dson-mark.png",
+      "sizes": "512x512",
+      "type": "image/png"
     }
   ]
 }
