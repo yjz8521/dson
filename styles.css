@@ -275,7 +275,7 @@ button {
 .hero-media-c {
   background:
     linear-gradient(90deg, rgba(7, 25, 39, 0.94) 0%, rgba(7, 25, 39, 0.7) 52%, rgba(7, 25, 39, 0.18) 100%),
-    url("assets/products/catalog/photovoltaic-chamber.jpg") 78% 50% / cover no-repeat;
+    url("assets/products/catalog/photovoltaic-chamber-dson.png") 78% 50% / cover no-repeat;
 }
 
 .hero-content {
@@ -929,7 +929,7 @@ button {
 }
 
 .page-masthead-specs {
-  background-image: url("assets/products/catalog/photovoltaic-chamber.jpg");
+  background-image: url("assets/products/catalog/photovoltaic-chamber-dson.png");
   background-position: 72% 48%;
 }
 
