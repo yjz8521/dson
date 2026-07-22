@@ -263,13 +263,13 @@ button {
 .hero-media-a {
   background:
     linear-gradient(90deg, rgba(7, 25, 39, 0.92) 0%, rgba(7, 25, 39, 0.68) 52%, rgba(7, 25, 39, 0.2) 100%),
-    url("assets/products/machine-02.jpg") 78% 50% / cover no-repeat;
+    url("assets/products/machine-02-dson-subtle.png") 78% 50% / cover no-repeat;
 }
 
 .hero-media-b {
   background:
     linear-gradient(90deg, rgba(7, 25, 39, 0.94) 0%, rgba(7, 25, 39, 0.72) 52%, rgba(7, 25, 39, 0.24) 100%),
-    url("assets/products/machine-04.jpg") 78% 50% / cover no-repeat;
+    url("assets/products/machine-04-dson-subtle.png") 78% 50% / cover no-repeat;
 }
 
 .hero-media-c {
@@ -919,12 +919,12 @@ button {
 }
 
 .page-masthead-about {
-  background-image: url("assets/products/machine-01.jpg");
+  background-image: url("assets/products/machine-01-dson-subtle.png");
   background-position: 74% 48%;
 }
 
 .page-masthead-products {
-  background-image: url("assets/products/machine-04.jpg");
+  background-image: url("assets/products/machine-04-dson-subtle.png");
   background-position: 76% 50%;
 }
 
