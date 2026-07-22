@@ -1852,6 +1852,22 @@ button {
   padding-bottom: 74px;
 }
 
+.product-full-specs {
+  padding-top: 24px;
+  padding-bottom: 74px;
+  background: #f5f8fb;
+}
+
+.product-full-spec-table + .product-full-spec-table {
+  margin-top: 20px;
+}
+
+.product-full-specs .section-heading p:not(.section-label) {
+  max-width: 720px;
+  margin: 10px 0 0;
+  color: var(--muted);
+}
+
 .product-spec-list {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
