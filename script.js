@@ -2,15 +2,19 @@ const headerToggle = document.querySelector(".menu-toggle");
 const nav = document.querySelector(".site-nav");
 
 if (headerToggle && nav) {
+  headerToggle.setAttribute("aria-label", "打开导航菜单");
+
   headerToggle.addEventListener("click", () => {
     const isOpen = nav.classList.toggle("is-open");
     headerToggle.setAttribute("aria-expanded", String(isOpen));
+    headerToggle.setAttribute("aria-label", isOpen ? "关闭导航菜单" : "打开导航菜单");
   });
 
   nav.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", () => {
       nav.classList.remove("is-open");
       headerToggle.setAttribute("aria-expanded", "false");
+      headerToggle.setAttribute("aria-label", "打开导航菜单");
     });
   });
 }
