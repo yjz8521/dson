@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://yjz8521.github.io/dson/sitemap.xml
+Sitemap: https://www.deshengtest.com/sitemap.xml

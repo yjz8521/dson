@@ -2,7 +2,7 @@
 
 GitHub Pages 公開網址：
 
-https://yjz8521.github.io/dson/
+https://www.deshengtest.com/
 
 ## 公開站點已補齊
 
@@ -18,6 +18,6 @@ https://yjz8521.github.io/dson/
 
 1. 確認 GitHub 倉庫為 Public。
 2. 在 GitHub Pages 設定中選擇 `master` 分支作為發布來源。
-3. 到 Google Search Console 新增網址前綴：`https://yjz8521.github.io/dson/`。
-4. 提交 sitemap：`https://yjz8521.github.io/dson/sitemap.xml`。
-5. 若後續改用公司正式域名，可同步更新 canonical、sitemap 與 GitHub Pages 設定。
+3. 到 Google Search Console 新增網址前綴：`https://www.deshengtest.com/`。
+4. 提交 sitemap：`https://www.deshengtest.com/sitemap.xml`。
+5. 正式網址已設定為 `www.deshengtest.com`；GitHub Pages 或中國大陸主機需完成對應的網域綁定與 DNS 設定。
