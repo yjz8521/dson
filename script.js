@@ -88,6 +88,38 @@ if (nextButton) {
   });
 }
 
+function installIcpFooter() {
+  let footer = document.querySelector(".site-footer");
+
+  if (!footer) {
+    footer = document.createElement("footer");
+    footer.className = "site-footer";
+    footer.innerHTML = `
+      <div class="container footer-row">
+        <div>
+          <p class="footer-brand">东莞市得声试验仪器设备有限公司</p>
+          <p class="footer-copy">环境试验设备与可靠性验证方案。</p>
+        </div>
+        <div class="footer-links">
+          <a href="index.html">首页</a>
+          <a href="about.html">公司介绍</a>
+          <a href="products.html">产品中心</a>
+          <a href="selection-guide.html">选型指南</a>
+          <a href="index.html#contact">联系我们</a>
+        </div>
+      </div>`;
+    document.body.appendChild(footer);
+  }
+
+  if (!footer.querySelector(".footer-icp")) {
+    const companyBlock = footer.querySelector(".footer-brand")?.parentElement || footer.querySelector(".container") || footer;
+    companyBlock.insertAdjacentHTML(
+      "beforeend",
+      '<p class="footer-icp"><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">粤ICP备2026105488号</a></p>'
+    );
+  }
+}
+
 function installCompactContactWidget() {
   if (document.querySelector(".compact-contact-widget")) return;
 
@@ -125,4 +157,5 @@ function installCompactContactWidget() {
   document.body.appendChild(widget);
 }
 
+installIcpFooter();
 installCompactContactWidget();

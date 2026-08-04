@@ -1250,6 +1250,19 @@ button {
   margin: 0;
 }
 
+.footer-icp {
+  margin: 8px 0 0;
+}
+
+.footer-icp a {
+  color: inherit;
+}
+
+.footer-icp a:hover,
+.footer-icp a:focus-visible {
+  color: #ffffff;
+}
+
 .footer-links {
   display: flex;
   flex-wrap: wrap;
