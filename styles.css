@@ -2497,3 +2497,137 @@ button {
     padding: 18px;
   }
 }
+
+.compact-contact-widget {
+  bottom: 22px;
+  position: fixed;
+  right: 22px;
+  z-index: 80;
+}
+
+.compact-contact-toggle {
+  align-items: center;
+  background: var(--primary);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  box-shadow: 0 14px 36px rgba(0, 56, 69, 0.26);
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 0.86rem;
+  font-weight: 800;
+  height: 50px;
+  justify-content: center;
+  letter-spacing: 0.04em;
+  min-width: 58px;
+  padding: 0 16px;
+}
+
+.compact-contact-toggle:hover,
+.compact-contact-toggle:focus-visible {
+  background: var(--primary-strong);
+  outline: none;
+}
+
+.compact-contact-widget.is-open .compact-contact-toggle {
+  display: none;
+}
+
+.compact-contact-panel {
+  background: rgba(255, 255, 255, 0.98);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  color: var(--text);
+  display: grid;
+  gap: 10px;
+  max-width: min(300px, calc(100vw - 28px));
+  padding: 16px;
+  width: 300px;
+}
+
+.compact-contact-panel[hidden] {
+  display: none;
+}
+
+.compact-contact-head {
+  align-items: center;
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+}
+
+.compact-contact-head strong {
+  font-size: 1rem;
+}
+
+.compact-contact-head button {
+  align-items: center;
+  background: #eef3f5;
+  border: 0;
+  border-radius: 999px;
+  color: var(--text);
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 1.15rem;
+  height: 30px;
+  justify-content: center;
+  line-height: 1;
+  width: 30px;
+}
+
+.compact-contact-panel p {
+  color: var(--text-soft);
+  font-size: 0.82rem;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.compact-contact-panel a {
+  align-items: center;
+  background: #f4f7f8;
+  border: 1px solid rgba(17, 32, 51, 0.08);
+  border-radius: 12px;
+  color: var(--primary-strong);
+  display: flex;
+  font-size: 0.82rem;
+  font-weight: 800;
+  min-height: 38px;
+  padding: 9px 11px;
+}
+
+.compact-contact-panel a:hover,
+.compact-contact-panel a:focus-visible {
+  border-color: rgba(0, 95, 115, 0.36);
+  outline: none;
+}
+
+@media (max-width: 640px) {
+  .compact-contact-widget {
+    bottom: 14px;
+    right: 14px;
+  }
+
+  .compact-contact-toggle {
+    font-size: 0.8rem;
+    height: 46px;
+    min-width: 52px;
+    padding: 0 13px;
+  }
+
+  .compact-contact-panel {
+    border-radius: 16px;
+    gap: 8px;
+    padding: 14px;
+    width: min(278px, calc(100vw - 28px));
+  }
+
+  .compact-contact-panel p {
+    font-size: 0.78rem;
+  }
+
+  .compact-contact-panel a {
+    font-size: 0.78rem;
+    min-height: 36px;
+  }
+}

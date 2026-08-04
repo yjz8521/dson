@@ -59,3 +59,42 @@ if (detailRoot) {
     loadFullSpecifications(detailRoot.querySelector("[data-full-specifications]"), fullSpecSources[detailRoot.dataset.productKey]);
   }
 }
+
+function installCompactContactWidget() {
+  if (document.querySelector(".compact-contact-widget")) return;
+
+  const widget = document.createElement("aside");
+  widget.className = "compact-contact-widget";
+  widget.setAttribute("aria-label", "得声在线咨询");
+  widget.innerHTML = `
+    <button class="compact-contact-toggle" type="button" aria-expanded="false">
+      <span>咨询</span>
+    </button>
+    <div class="compact-contact-panel" hidden>
+      <div class="compact-contact-head">
+        <strong>联系得声</strong>
+        <button type="button" aria-label="收起咨询窗口">×</button>
+      </div>
+      <p>提供试验条件、样品尺寸与温湿度范围，我们协助确认设备方案。</p>
+      <a href="tel:+8676982654576">电话：0769-82654576</a>
+      <a href="mailto:jason@tw-vision.com.cn">邮箱：jason@tw-vision.com.cn</a>
+      <a href="index.html#contact">查看联系方式</a>
+    </div>
+  `;
+
+  const toggle = widget.querySelector(".compact-contact-toggle");
+  const close = widget.querySelector(".compact-contact-head button");
+  const panel = widget.querySelector(".compact-contact-panel");
+
+  function setOpen(isOpen) {
+    widget.classList.toggle("is-open", isOpen);
+    panel.hidden = !isOpen;
+    toggle.setAttribute("aria-expanded", String(isOpen));
+  }
+
+  toggle.addEventListener("click", () => setOpen(!widget.classList.contains("is-open")));
+  close.addEventListener("click", () => setOpen(false));
+  document.body.appendChild(widget);
+}
+
+installCompactContactWidget();
