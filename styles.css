@@ -237,6 +237,20 @@ button {
 .hero-media {
   position: absolute;
   inset: 0;
+  overflow: hidden;
+  background: #132b3c;
+}
+
+.hero-media picture,
+.hero-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-media img {
+  object-fit: cover;
+  object-position: 78% 50%;
 }
 
 .hero-media::before,
@@ -248,34 +262,13 @@ button {
 
 .hero-media::before {
   background:
-    linear-gradient(120deg, rgba(14, 27, 44, 0.88), rgba(14, 27, 44, 0.56)),
-    linear-gradient(45deg, rgba(233, 180, 76, 0.2), transparent 55%);
+    linear-gradient(90deg, rgba(7, 25, 39, 0.94) 0%, rgba(7, 25, 39, 0.7) 54%, rgba(7, 25, 39, 0.2) 100%);
+  z-index: 1;
 }
 
 .hero-media::after {
-  background:
-    radial-gradient(circle at 15% 20%, rgba(233, 180, 76, 0.22), transparent 18%),
-    radial-gradient(circle at 85% 25%, rgba(0, 95, 115, 0.28), transparent 26%),
-    linear-gradient(transparent 0 70%, rgba(255, 255, 255, 0.06) 70% 71%, transparent 71% 100%);
-  opacity: 0.85;
-}
-
-.hero-media-a {
-  background:
-    linear-gradient(90deg, rgba(7, 25, 39, 0.92) 0%, rgba(7, 25, 39, 0.68) 52%, rgba(7, 25, 39, 0.2) 100%),
-    url("assets/products/machine-02-dson-subtle.png") 78% 50% / cover no-repeat;
-}
-
-.hero-media-b {
-  background:
-    linear-gradient(90deg, rgba(7, 25, 39, 0.94) 0%, rgba(7, 25, 39, 0.72) 52%, rgba(7, 25, 39, 0.24) 100%),
-    url("assets/products/machine-04-dson-subtle.png") 78% 50% / cover no-repeat;
-}
-
-.hero-media-c {
-  background:
-    linear-gradient(90deg, rgba(7, 25, 39, 0.94) 0%, rgba(7, 25, 39, 0.7) 52%, rgba(7, 25, 39, 0.18) 100%),
-    url("assets/products/catalog/photovoltaic-chamber-dson.png") 78% 50% / cover no-repeat;
+  background: linear-gradient(180deg, transparent 66%, rgba(7, 25, 39, 0.34));
+  z-index: 1;
 }
 
 .hero-content {
@@ -919,17 +912,17 @@ button {
 }
 
 .page-masthead-about {
-  background-image: url("assets/products/machine-01-dson-subtle.png");
+  background-image: url("assets/products/machine-01-dson-subtle.webp");
   background-position: 74% 48%;
 }
 
 .page-masthead-products {
-  background-image: url("assets/products/machine-04-dson-subtle.png");
+  background-image: url("assets/products/machine-04-dson-subtle.webp");
   background-position: 76% 50%;
 }
 
 .page-masthead-specs {
-  background-image: url("assets/products/catalog/photovoltaic-chamber-dson.png");
+  background-image: url("assets/products/catalog/photovoltaic-chamber-dson.webp");
   background-position: 72% 48%;
 }
 
@@ -1229,6 +1222,18 @@ button {
   line-height: 1.7;
 }
 
+.contact-item a {
+  color: #ffffff;
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.42);
+  text-underline-offset: 4px;
+}
+
+.contact-item a:hover,
+.contact-item a:focus-visible {
+  text-decoration-color: #ffffff;
+}
+
 .site-footer {
   padding: 28px 0 44px;
   background: #0b1625;
@@ -1251,7 +1256,10 @@ button {
 }
 
 .footer-icp {
-  margin: 8px 0 0;
+  margin: 24px auto 0;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  text-align: center;
 }
 
 .footer-icp a {
@@ -1864,7 +1872,7 @@ button {
 .product-detail-image img {
   display: block;
   width: 100%;
-  aspect-ratio: 1 / 0.78;
+  height: auto;
   object-fit: contain;
 }
 
@@ -1938,6 +1946,10 @@ button {
   line-height: 1.7;
 }
 
+.spec-block-spaced {
+  margin-top: 18px;
+}
+
 @media (max-width: 1080px) {
   .product-snap-deck { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .overview-product-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -1945,6 +1957,9 @@ button {
 }
 
 @media (max-width: 640px) {
+  .catalog-page {
+    padding-bottom: 76px;
+  }
   .catalog-masthead { min-height: 180px; }
   .catalog-masthead .page-masthead-content { padding: 36px 0 30px; }
   .catalog-masthead .page-masthead-content h1 { font-size: 2rem; }
@@ -1953,15 +1968,28 @@ button {
   .catalog-section-intro h2 { font-size: 1.25rem; }
   .catalog-section-intro > p:not(.section-label) { margin-top: 5px; font-size: 0.78rem; line-height: 1.45; }
   .catalog-section-intro .section-label { margin: 0; font-size: 0.68rem; }
-  .catalog-side-nav { top: 50%; bottom: auto; left: 8px; transform: translateY(-50%); gap: 6px; }
-  .catalog-side-nav a { grid-template-columns: 28px; min-width: 0; padding: 5px; border-radius: 10px; }
-  .catalog-side-nav b { display: none; }
+  .catalog-side-nav {
+    position: sticky;
+    top: 70px;
+    left: auto;
+    z-index: 26;
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 9px 12px;
+    transform: none;
+    border-bottom: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.96);
+    scrollbar-width: none;
+  }
+  .catalog-side-nav::-webkit-scrollbar { display: none; }
+  .catalog-side-nav a { grid-template-columns: 28px auto; min-width: max-content; padding: 5px 10px 5px 5px; border-radius: 10px; box-shadow: none; }
+  .catalog-side-nav b { display: inline; }
   .catalog-side-nav span { width: 28px; height: 28px; font-size: 0.75rem; }
-  .product-snap-deck { width: 100%; height: calc(100dvh - 70px); display: block; overflow-y: auto; overscroll-behavior-y: contain; scroll-snap-type: y mandatory; scroll-padding-top: 0; padding: 0; scrollbar-width: none; }
-  .product-snap-deck::-webkit-scrollbar { display: none; }
-  .product-snap-deck .product-card { min-height: 100%; height: 100%; display: grid; grid-template-rows: minmax(0, 34vh) auto; align-content: start; scroll-snap-align: start; scroll-snap-stop: always; padding: 14px 20px 14px 46px; border-radius: 0; border-width: 0 0 1px; box-shadow: none; }
-  .product-snap-deck .product-visual { height: auto; min-height: 0; margin: 0 -4px 10px -4px; border-radius: 14px; }
-  .product-snap-deck .product-visual img { padding: 6px 8px 10px; }
+  .product-snap-deck { width: var(--container); height: auto; display: grid; grid-template-columns: 1fr; gap: 14px; overflow: visible; padding: 0 0 52px; }
+  .product-snap-deck .product-card { min-height: 0; height: auto; display: grid; grid-template-rows: 210px auto; padding: 16px; border: 1px solid var(--line); border-radius: 14px; box-shadow: none; }
+  .product-snap-deck .product-visual { height: 210px; min-height: 0; margin: 0 0 12px; border-radius: 12px; }
+  .product-snap-deck .product-visual img { padding: 8px 10px 12px; }
   .product-card-copy .product-badge { width: 34px; height: 34px; margin-bottom: 7px; border-radius: 10px; }
   .product-family { margin-bottom: 4px; font-size: 0.66rem; }
   .product-snap-deck .product-card h3 { font-size: 1.2rem; }
@@ -1980,7 +2008,6 @@ button {
   .product-detail-hero p:not(.eyebrow) { margin-top: 13px; font-size: 0.94rem; line-height: 1.65; }
   .product-detail-actions { margin-top: 22px; }
   .product-detail-actions .btn { width: 100%; }
-  .product-detail-image img { aspect-ratio: 1 / 0.72; }
   .product-detail-content { padding-top: 52px; padding-bottom: 52px; }
   .product-spec-list { grid-template-columns: 1fr; gap: 10px; margin: 18px 0 26px; }
   .product-spec-list div { padding: 15px; }
@@ -2617,8 +2644,8 @@ button {
 
 @media (max-width: 640px) {
   .compact-contact-widget {
-    bottom: 14px;
-    right: 14px;
+    bottom: 12px;
+    right: 12px;
   }
 
   .compact-contact-toggle {

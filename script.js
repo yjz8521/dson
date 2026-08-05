@@ -112,10 +112,9 @@ function installIcpFooter() {
   }
 
   if (!footer.querySelector(".footer-icp")) {
-    const companyBlock = footer.querySelector(".footer-brand")?.parentElement || footer.querySelector(".container") || footer;
-    companyBlock.insertAdjacentHTML(
+    footer.insertAdjacentHTML(
       "beforeend",
-      '<p class="footer-icp"><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">粤ICP备2026105488号</a></p>'
+      '<p class="container footer-icp"><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">粤ICP备2026105488号</a></p>'
     );
   }
 }
