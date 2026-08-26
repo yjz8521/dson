@@ -4,6 +4,7 @@ set -Eeuo pipefail
 SITE_DIR="/var/www/deshengtest"
 DOMAIN="deshengtest.com"
 WWW_DOMAIN="www.deshengtest.com"
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 TIMESTAMP="$(date +%Y%m%d-%H%M%S)"
 TMP_DIR="$(mktemp -d)"
 NGINX_DUMP="${TMP_DIR}/nginx.txt"
@@ -283,6 +284,13 @@ assert_redirect "https" "${DOMAIN}" "/" "https://${WWW_DOMAIN}/"
 assert_redirect "https" "${WWW_DOMAIN}" "/dth.html" "https://${WWW_DOMAIN}/product-constant-temperature-humidity.html"
 assert_redirect "https" "${WWW_DOMAIN}" "/dath.html" "https://${WWW_DOMAIN}/product-walk-in-chamber.html"
 assert_redirect "https" "${WWW_DOMAIN}" "/rapid-temperature.html" "https://${WWW_DOMAIN}/product-rapid-temperature.html"
+
+SEARCH_SUBMIT_SCRIPT="${SCRIPT_DIR}/submit-mainland-search.sh"
+if [[ -f "${SEARCH_SUBMIT_SCRIPT}" ]]; then
+  if ! SITE_ROOT="${SITE_DIR}" SITE_ORIGIN="https://${WWW_DOMAIN}" bash "${SEARCH_SUBMIT_SCRIPT}"; then
+    printf 'WARN: mainland search submission was not completed; site deployment remains successful.\n' >&2
+  fi
+fi
 
 printf 'DEPLOY_OK commit=%s config=%s backup=%s\n' \
   "${CURRENT_COMMIT:0:7}" "${ACTIVE_CONFIG}" "${BACKUP_CONFIG}"
