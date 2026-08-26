@@ -190,15 +190,15 @@ ${SSL_OPTIONS}
 ${SSL_DHPARAM}
 
     location = /dth.html {
-        return 301 /product-constant-temperature-humidity.html;
+        return 301 https://${WWW_DOMAIN}/product-constant-temperature-humidity.html;
     }
 
     location = /dath.html {
-        return 301 /product-walk-in-chamber.html;
+        return 301 https://${WWW_DOMAIN}/product-walk-in-chamber.html;
     }
 
     location = /rapid-temperature.html {
-        return 301 /product-rapid-temperature.html;
+        return 301 https://${WWW_DOMAIN}/product-rapid-temperature.html;
     }
 
     gzip on;

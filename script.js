@@ -111,23 +111,15 @@ function installIcpFooter() {
     document.body.appendChild(footer);
   }
 
-  if (!footer.querySelector(".footer-legal")) {
-    footer.insertAdjacentHTML(
-      "beforeend",
-      `<div class="container footer-legal">
-        <p>东莞市得声试验仪器设备有限公司</p>
-        <p>地址：广东省东莞市黄江镇田美宝龙三街 16 号　电话：<a href="tel:076982654576">0769-82654576</a></p>
-        <p>统一社会信用代码：待补</p>
-        <p><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">粤ICP备2026105488号</a></p>
-        <p>© 2026 东莞市得声试验仪器设备有限公司　版权所有</p>
-      </div>`
-    );
+  if (typeof window.installLegalFooter === "function") {
+    window.installLegalFooter(footer);
   }
 }
 
 function installCompactContactWidget() {
   if (document.querySelector(".compact-contact-widget")) return;
 
+  const inquiryEmail = window.DSON_INQUIRY_EMAIL || "";
   const widget = document.createElement("aside");
   widget.className = "compact-contact-widget";
   widget.setAttribute("aria-label", "得声在线咨询");
@@ -142,7 +134,7 @@ function installCompactContactWidget() {
       </div>
       <p>提供试验条件、样品尺寸与温湿度范围，我们协助确认设备方案。</p>
       <a href="tel:+8676982654576">电话：0769-82654576</a>
-      <a href="mailto:jason@tw-vision.com.cn">邮箱：jason@tw-vision.com.cn</a>
+      ${inquiryEmail ? `<a href="mailto:${inquiryEmail}">邮箱：${inquiryEmail}</a>` : ""}
       <a href="index.html#contact">查看联系方式</a>
     </div>
   `;

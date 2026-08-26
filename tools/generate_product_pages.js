@@ -1,6 +1,8 @@
 const fs = require("fs");
 const path = require("path");
 const vm = require("vm");
+const { renderStaticLegalFooter } = require("./generate_site_footer");
+const siteFooterData = require("./site-footer-data");
 
 const root = path.resolve(__dirname, "..");
 const context = { window: {} };
@@ -8,6 +10,7 @@ vm.runInNewContext(fs.readFileSync(path.join(root, "product-data.js"), "utf8"), 
 
 const products = context.window.DSON_PRODUCTS;
 const siteOrigin = "https://www.deshengtest.com";
+const INQUIRY_EMAIL = siteFooterData.inquiryEmail;
 
 const staticSpecSources = {
   dth: { file: "dth.html", kind: "legacy", label: "DTH 标准型号、性能、降温时间与主要装置" },
@@ -75,13 +78,7 @@ function footerMarkup() {
         <a href="index.html#contact">联系我们</a>
       </div>
     </div>
-    <div class="container footer-legal">
-      <p>东莞市得声试验仪器设备有限公司</p>
-      <p>地址：广东省东莞市黄江镇田美宝龙三街 16 号　电话：<a href="tel:076982654576">0769-82654576</a></p>
-      <p>统一社会信用代码：待补</p>
-      <p><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">粤ICP备2026105488号</a></p>
-      <p>© 2026 东莞市得声试验仪器设备有限公司　版权所有</p>
-    </div>
+${renderStaticLegalFooter()}
   </footer>`;
 }
 
@@ -143,7 +140,7 @@ function productPage(key, product) {
           <h1>${escapeHtml(product.name)}</h1>
           <p>${escapeHtml(detailIntro)}</p>
           <div class="product-detail-actions">
-            <a class="btn btn-primary" href="mailto:jason@tw-vision.com.cn?subject=${mailSubject}">邮件询价</a>
+            <a class="btn btn-primary" href="mailto:${INQUIRY_EMAIL}?subject=${mailSubject}">邮件询价</a>
             <a class="btn btn-secondary" href="tel:+8676982654576">电话咨询</a>
           </div>
         </div>
@@ -177,7 +174,7 @@ ${staticSpecifications}
         <h2>提供试验条件，确认适用配置</h2>
         <p>请提供样品尺寸与重量、试验标准、温湿度范围、变化速率、供电、冷却方式与场地条件。</p>
         <div class="product-detail-actions">
-          <a class="btn btn-primary" href="mailto:jason@tw-vision.com.cn?subject=${mailSubject}">发送询价邮件</a>
+          <a class="btn btn-primary" href="mailto:${INQUIRY_EMAIL}?subject=${mailSubject}">发送询价邮件</a>
           <a class="btn btn-secondary" href="index.html#contact">查看完整联系方式</a>
         </div>
       </div>
@@ -185,6 +182,7 @@ ${staticSpecifications}
   </main>
 ${footerMarkup()}
   <script src="product-data.js?v=site-20260805"></script>
+  <script src="footer-legal.js?v=site-20260826"></script>
   <script src="product-detail.js?v=site-20260805"></script>
 </body>
 </html>
