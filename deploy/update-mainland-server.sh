@@ -43,6 +43,8 @@ restore_nginx() {
 [[ -d "${SITE_DIR}/.git" ]] || fail "未找到网站目录 ${SITE_DIR}。"
 command -v git >/dev/null || fail "服务器未安装 Git。"
 command -v nginx >/dev/null || fail "服务器未安装 Nginx。"
+command -v openssl >/dev/null || fail "服务器未安装 OpenSSL，无法确认 SSL 证书覆盖的域名。"
+command -v curl >/dev/null || fail "服务器未安装 curl，无法完成部署后的本机验收。"
 
 cd "${SITE_DIR}"
 
@@ -118,6 +120,31 @@ CERTIFICATE_KEY="$(
 [[ -n "${CERTIFICATE_KEY}" && -f "${CERTIFICATE_KEY}" ]] ||
   fail "未能确认现有 SSL 私钥路径。"
 
+certificate_covers() {
+  local hostname="$1"
+  local escaped_hostname="${hostname//./\\.}"
+  local certificate_names
+
+  certificate_names="$(openssl x509 -in "${CERTIFICATE}" -noout -ext subjectAltName 2>/dev/null)" ||
+    return 1
+  if printf '%s\n' "${certificate_names}" | grep -Eq "DNS:${escaped_hostname}([,[:space:]]|$)"; then
+    return 0
+  fi
+
+  if [[ "${hostname}" == *.* ]]; then
+    local parent="${hostname#*.}"
+    local escaped_parent="${parent//./\\.}"
+    printf '%s\n' "${certificate_names}" | grep -Eq "DNS:\\*\\.${escaped_parent}([,[:space:]]|$)"
+  else
+    return 1
+  fi
+}
+
+certificate_covers "${DOMAIN}" ||
+  fail "SSL 证书不覆盖 ${DOMAIN}，未执行任何 Nginx 修改。"
+certificate_covers "${WWW_DOMAIN}" ||
+  fail "SSL 证书不覆盖 ${WWW_DOMAIN}，未执行任何 Nginx 修改。"
+
 SSL_OPTIONS=""
 SSL_DHPARAM=""
 if [[ -f "/etc/letsencrypt/options-ssl-nginx.conf" ]]; then
@@ -160,6 +187,18 @@ server {
     ssl_certificate_key ${CERTIFICATE_KEY};
 ${SSL_OPTIONS}
 ${SSL_DHPARAM}
+
+    location = /dth.html {
+        return 301 /product-constant-temperature-humidity.html;
+    }
+
+    location = /dath.html {
+        return 301 /product-walk-in-chamber.html;
+    }
+
+    location = /rapid-temperature.html {
+        return 301 /product-rapid-temperature.html;
+    }
 
     gzip on;
     gzip_vary on;
@@ -213,6 +252,37 @@ curl -fsS -o /dev/null \
   --resolve "${WWW_DOMAIN}:443:127.0.0.1" \
   "https://${WWW_DOMAIN}/" ||
   fail "Nginx 已重新载入，但本机网站检查失败，正在恢复原配置。"
+
+assert_redirect() {
+  local scheme="$1"
+  local host="$2"
+  local path="$3"
+  local expected_location="$4"
+  local port="80"
+  local headers
+  local status
+  local location
+
+  if [[ "${scheme}" == "https" ]]; then
+    port="443"
+  fi
+
+  headers="$(curl -sS -D - -o /dev/null --max-redirs 0 \
+    --resolve "${host}:${port}:127.0.0.1" \
+    "${scheme}://${host}${path}")" ||
+    fail "本机 ${scheme}://${host}${path} 检查失败。"
+  status="$(printf '%s\n' "${headers}" | awk 'NR == 1 { print $2 }')"
+  location="$(printf '%s\n' "${headers}" | awk 'tolower($1) == "location:" { sub(/^[^:]*:[[:space:]]*/, ""); print; exit }' | tr -d '\r')"
+
+  [[ "${status}" == "301" && "${location}" == "${expected_location}" ]] ||
+    fail "${scheme}://${host}${path} 未得到预期 301：status=${status:-空} location=${location:-空}。"
+}
+
+assert_redirect "http" "${DOMAIN}" "/" "https://${WWW_DOMAIN}/"
+assert_redirect "https" "${DOMAIN}" "/" "https://${WWW_DOMAIN}/"
+assert_redirect "https" "${WWW_DOMAIN}" "/dth.html" "https://${WWW_DOMAIN}/product-constant-temperature-humidity.html"
+assert_redirect "https" "${WWW_DOMAIN}" "/dath.html" "https://${WWW_DOMAIN}/product-walk-in-chamber.html"
+assert_redirect "https" "${WWW_DOMAIN}" "/rapid-temperature.html" "https://${WWW_DOMAIN}/product-rapid-temperature.html"
 
 printf 'DEPLOY_OK commit=%s config=%s backup=%s\n' \
   "${CURRENT_COMMIT:0:7}" "${ACTIVE_CONFIG}" "${BACKUP_CONFIG}"

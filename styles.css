@@ -1271,6 +1271,29 @@ button {
   color: #ffffff;
 }
 
+.footer-legal {
+  margin: 24px auto 0;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 13px;
+  line-height: 1.8;
+  text-align: center;
+}
+
+.footer-legal p {
+  margin: 0;
+}
+
+.footer-legal a {
+  color: inherit;
+}
+
+.footer-legal a:hover,
+.footer-legal a:focus-visible {
+  color: #ffffff;
+}
+
 .footer-links {
   display: flex;
   flex-wrap: wrap;

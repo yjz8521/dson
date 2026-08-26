@@ -9,6 +9,82 @@ vm.runInNewContext(fs.readFileSync(path.join(root, "product-data.js"), "utf8"), 
 const products = context.window.DSON_PRODUCTS;
 const siteOrigin = "https://www.deshengtest.com";
 
+const staticSpecSources = {
+  dth: { file: "dth.html", kind: "legacy", label: "DTH 标准型号、性能、降温时间与主要装置" },
+  multilayer: { file: "catalog-specs.html", kind: "catalog", id: "multilayer", label: "JHHS-415T 标准规格" },
+  rapid: { file: "rapid-temperature.html", kind: "legacy", label: "800L 标准型、系统配置与执行标准" },
+  drug: { file: "catalog-specs.html", kind: "catalog", id: "drug-stability", label: "PJHH-B / PJHH-D 型号规格" },
+  walkin: { file: "dath.html", kind: "legacy", label: "DATH 步入式标准型号与共通配置" },
+  photovoltaic: { file: "catalog-specs.html", kind: "catalog", id: "photovoltaic", label: "JHWA / JHWB 光伏组件机型参数" },
+  twoZoneShock: { file: "dlct.html", kind: "legacy", label: "DLCT 标准型号、回复时间与控制配置" },
+  threeZoneShock: { file: "catalog-specs.html", kind: "catalog", id: "three-zone", label: "JHS 系列规格" },
+  equalShock: { file: "catalog-specs.html", kind: "catalog", id: "equal-temperature", label: "JHSR 系列规格" },
+  vibration: { file: "catalog-specs.html", kind: "catalog", id: "vibration", label: "JHVE-415T 标准规格" },
+  ess: { file: "catalog-specs.html", kind: "catalog", id: "ess", label: "JHESS-512L 标准规格" },
+  saltSpray: { file: "catalog-specs.html", kind: "catalog", id: "salt-spray", label: "JHL 系列型号规格" },
+  rain: { file: "catalog-specs.html", kind: "catalog", id: "rain-test", label: "JHR 系列防水试验参数" },
+  sandDust: { file: "catalog-specs.html", kind: "catalog", id: "sand-dust", label: "JH-1000 系列规格" }
+};
+
+const sourceCache = new Map();
+
+function sourceHtml(file) {
+  if (!sourceCache.has(file)) {
+    sourceCache.set(file, fs.readFileSync(path.join(root, file), "utf8"));
+  }
+  return sourceCache.get(file);
+}
+
+function extractStaticSpecifications(key) {
+  const source = staticSpecSources[key];
+  if (!source) throw new Error(`Missing static specification source for ${key}`);
+
+  const html = sourceHtml(source.file);
+  let blocks = [];
+
+  if (source.kind === "catalog") {
+    const startMarker = `<article class="catalog-spec-section" id="${source.id}">`;
+    const start = html.indexOf(startMarker);
+    const end = start >= 0 ? html.indexOf("</article>", start) : -1;
+    if (start < 0 || end < 0) throw new Error(`Missing catalog specification section ${source.id}`);
+    blocks = [html.slice(start, end + "</article>".length)];
+  } else {
+    blocks = [...html.matchAll(/<article\s+class="spec-panel"[\s\S]*?<\/article>/gi)].map((match) => match[0]);
+    if (!blocks.length) throw new Error(`Missing legacy specification panels in ${source.file}`);
+  }
+
+  return `
+        <div class="section-heading"><div><p class="section-label">FULL SPECIFICATIONS</p><h2>完整规格与型号参数</h2><p>${escapeHtml(source.label)}</p></div></div>
+        ${blocks.join("\n        ")}
+        <p class="product-detail-note">以上规格可依实际需求与配置调整，请以正式报价书及技术协议为准。</p>`;
+}
+
+function footerMarkup() {
+  return `
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <div>
+        <p class="footer-brand">东莞市得声试验仪器设备有限公司</p>
+        <p class="footer-copy">环境试验设备与可靠性验证方案。</p>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">首页</a>
+        <a href="about.html">公司介绍</a>
+        <a href="products.html">产品中心</a>
+        <a href="selection-guide.html">选型指南</a>
+        <a href="index.html#contact">联系我们</a>
+      </div>
+    </div>
+    <div class="container footer-legal">
+      <p>东莞市得声试验仪器设备有限公司</p>
+      <p>地址：广东省东莞市黄江镇田美宝龙三街 16 号　电话：<a href="tel:076982654576">0769-82654576</a></p>
+      <p>统一社会信用代码：待补</p>
+      <p><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">粤ICP备2026105488号</a></p>
+      <p>© 2026 东莞市得声试验仪器设备有限公司　版权所有</p>
+    </div>
+  </footer>`;
+}
+
 function escapeHtml(value) {
   return String(value)
     .replaceAll("&", "&amp;")
@@ -24,6 +100,8 @@ function productPage(key, product) {
     .map(([label, value]) => `<div><dt>${escapeHtml(label)}</dt><dd>${escapeHtml(value)}</dd></div>`)
     .join("");
   const features = product.features.map((feature) => `<li>${escapeHtml(feature)}</li>`).join("");
+  const staticSpecifications = extractStaticSpecifications(key);
+  const detailIntro = product.detailIntro || product.intro;
   const schema = JSON.stringify({
     "@context": "https://schema.org",
     "@type": "Product",
@@ -63,7 +141,7 @@ function productPage(key, product) {
         <div>
           <p class="eyebrow">${escapeHtml(product.family)}</p>
           <h1>${escapeHtml(product.name)}</h1>
-          <p>${escapeHtml(product.intro)}</p>
+          <p>${escapeHtml(detailIntro)}</p>
           <div class="product-detail-actions">
             <a class="btn btn-primary" href="mailto:jason@tw-vision.com.cn?subject=${mailSubject}">邮件询价</a>
             <a class="btn btn-secondary" href="tel:+8676982654576">电话咨询</a>
@@ -89,8 +167,8 @@ function productPage(key, product) {
       </div>
     </section>
     <section class="section product-full-specs">
-      <div class="container" data-full-specifications>
-        <p class="product-detail-note">正在载入完整规格表。若未自动显示，请打开<a href="catalog-specs.html">规格汇总页</a>查看。</p>
+      <div class="container" data-full-specifications data-static-full-specifications>
+${staticSpecifications}
       </div>
     </section>
     <section class="section section-accent">
@@ -105,6 +183,7 @@ function productPage(key, product) {
       </div>
     </section>
   </main>
+${footerMarkup()}
   <script src="product-data.js?v=site-20260805"></script>
   <script src="product-detail.js?v=site-20260805"></script>
 </body>

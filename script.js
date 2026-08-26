@@ -111,10 +111,16 @@ function installIcpFooter() {
     document.body.appendChild(footer);
   }
 
-  if (!footer.querySelector(".footer-icp")) {
+  if (!footer.querySelector(".footer-legal")) {
     footer.insertAdjacentHTML(
       "beforeend",
-      '<p class="container footer-icp"><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">粤ICP备2026105488号</a></p>'
+      `<div class="container footer-legal">
+        <p>东莞市得声试验仪器设备有限公司</p>
+        <p>地址：广东省东莞市黄江镇田美宝龙三街 16 号　电话：<a href="tel:076982654576">0769-82654576</a></p>
+        <p>统一社会信用代码：待补</p>
+        <p><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">粤ICP备2026105488号</a></p>
+        <p>© 2026 东莞市得声试验仪器设备有限公司　版权所有</p>
+      </div>`
     );
   }
 }
