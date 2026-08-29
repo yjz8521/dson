@@ -201,6 +201,10 @@ ${SSL_DHPARAM}
         return 301 https://${WWW_DOMAIN}/product-rapid-temperature.html;
     }
 
+    location = /dlct.html {
+        return 301 https://${WWW_DOMAIN}/product-two-zone-shock.html;
+    }
+
     gzip on;
     gzip_vary on;
     gzip_min_length 1024;
