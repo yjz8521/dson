@@ -35,3 +35,32 @@ GitHub 是原始碼與版本來源；正式網站運行在中國大陸的阿里�
 - `tools/generate_site_footer.js`：由上述資料生成靜態 footer、JS fallback 與站內信箱引用
 
 修改產品或 footer 資料後，先在本機重新生成並完成檢查，再進行分支審核與部署。網站是展示與詢價型站點，不提供訪客登入、付款或會員功能。
+
+## 询价表单（Web3Forms）
+
+`contact.html`、`catalog-specs.html` 與 14 個 `product-*.html` 的询价表单，以及规格总表 PDF 下载的邮箱收集，全部由 `inquiry-form.js` 渲染，提交到 Web3Forms（https://web3forms.com，纯前端表单服务，无后端）。
+
+### 申请与设置（首次）
+
+1. 到 https://web3forms.com 输入收件信箱 `jason@tw-vision.com.cn` 申请 access key。
+2. 到该信箱收验证邮件（收不到先查垃圾邮件），取得 access key。
+3. 打开 `inquiry-form.js`，把最上方的 `ACCESS_KEY = "YOUR_WEB3FORMS_ACCESS_KEY"` 换成取得的 key。
+4. 部署后任一表单送出一笔测试资料，确认信箱收到即完成。
+
+### 测试
+
+- 本地预览：`python -m http.server` 或直接双击 `contact.html`，填必填栏位（公司名称／联系人／电子邮箱）送出。
+- 未设置 access key 时送出会显示「表单服务尚未设置」提示；规格总表 PDF 在未设置状态下会直接开放下载（不收集邮箱）。
+
+### 日后更换收件信箱
+
+**只需要登录 Web3Forms 后台修改收件地址，不用改任何 HTML/JS。** 这是选 Web3Forms 而非 FormSubmit 的原因：FormSubmit 把信箱写死在 endpoint 网址里，换信箱等于全站表单重来。
+
+### 风险与备选
+
+Web3Forms 主机在海外；收件为大陆信箱（企业邮箱／QQ／163）时，跨境寄信可能有延迟或被拦的风险，重要客户请同时以页面上的电话／邮箱直联兜底。若送达率不佳，备选方案：Formspree（同样 access key 模式，改 `inquiry-form.js` 的 `ENDPOINT` 与 `ACCESS_KEY` 即可）、或日后在 ECS 上加一个轻量表单收信接口。
+
+### 维护
+
+- 栏位定义、必填规则、产品名隐藏栏位全部集中在 `inquiry-form.js` 的 `FIELDS`；各页面只放 `<div data-inquiry-form data-product="产品名称"></div>` 占位。
+- 规格总表 PDF：`assets/DSON-spec-sheet.pdf`，换档时同名覆盖即可，下载链接不用改。
