@@ -1,3 +1,6 @@
 .playwright-cli/
 output/
 
+# 研究素材改放 private repo: yjz8521/dson-research
+source/
+docs/
