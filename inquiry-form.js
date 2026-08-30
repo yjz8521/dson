@@ -9,7 +9,7 @@
   //   3. 任一表单送出一笔测试信确认
   // 日后更换收件信箱：只需到 Web3Forms 后台修改，不用改本文件。
   // ============================================================
-  var ACCESS_KEY = "YOUR_WEB3FORMS_ACCESS_KEY";
+  var ACCESS_KEY = "be0f7e13-6f0f-49b5-b70d-d3a88a1915f8";
   var ENDPOINT = "https://api.web3forms.com/submit";
   var PDF_URL = "assets/DSON-spec-sheet.pdf";
 
