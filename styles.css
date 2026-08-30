@@ -800,7 +800,7 @@ button {
   font-weight: 800;
 }
 
-.spec-panel-heading h4 {
+.spec-panel-heading h3 {
   margin: 0 0 8px;
   font-size: 1.35rem;
 }
@@ -879,7 +879,7 @@ button {
   background: rgba(0, 95, 115, 0.05);
 }
 
-.spec-detail-grid h5 {
+.spec-detail-grid h4 {
   margin: 0 0 10px;
   color: var(--primary-strong);
   font-size: 1rem;
